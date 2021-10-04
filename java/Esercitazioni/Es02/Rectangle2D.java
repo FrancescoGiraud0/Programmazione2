@@ -33,24 +33,14 @@ public class Rectangle2D extends Point2D{
         this.normalize();
     }
 
-    // Per ridefinire l'altezza di un rettangolo
-    public void setAltezza(double altezza){
-        if(altezza<0){
-            // Rende altezza positiva
-            this.altezza = Math.abs(altezza);
-            // Ricalcola posizione nuovo punto di appoggio
-            this.y -= this.altezza;
-        }
-    }
-
-    // Per ridefinire la larghezza di un rettangolo
-    public void setLarghezza(double larghezza){
-        if(larghezza<0){
-            // Rende larghezza positiva
-            this.larghezza = Math.abs(larghezza);
-            // Ricalcola posizione nuovo punto di appoggio
-            this.x -= this.larghezza;
-        }
+    //Funzione che permette di cambiare il valore di "altezza";
+    void setAltezza(double a)
+    {altezza=a; normalize();}
+    
+    //Funzione che permette di cambiare il valore di "larghezza";
+    void setLarghezza(double l){
+        larghezza=l;
+        normalize();
     }
 
     // Restituisce Perimetro rettangolo
@@ -102,18 +92,31 @@ public class Rectangle2D extends Point2D{
     public static void main(String[] args){
         Rectangle2D r1 = new Rectangle2D(-1,-1);
 
+        System.out.println("Informazioni dopo creazione: ");
+
         System.out.println(r1);
         System.out.println("Perimetro: "+r1.perimetro()+", Area: "+r1.area());
         System.out.println(r1.info());
+
+        System.out.println("\nInformazioni dopo moveTo(): ");
 
         // Prova metodo moveTo()
         r1.moveTo(1,1);
         System.out.println(r1);
         System.out.println(r1.info());
 
-        // Prova metodo normalize();
-        r1.normalize();
-        System.out.println(r1);
+        System.out.println("\nInformazioni dopo setAltezza(): ");
+
+        // Prova setAltezza
+        // Nota metodo normalize() usato in setAltezza()
+        r1.setAltezza(-3);
+        System.out.println(r1.info());
+
+        System.out.println("\nInformazioni dopo setLarghezza(): ");
+
+        // Prova setLarghezza
+        // Nota metodo normalize() usato in setLarghezza()
+        r1.setLarghezza(-10);
         System.out.println(r1.info());
     }
 }

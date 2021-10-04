@@ -60,6 +60,7 @@ class Point2D{
         // Controlla che ci siano almeno 2 valori in args
         // Termina se args.length<2
         if(args.length<2){
+            System.out.println("Errore: Inserire coordinate centro");
             return;
         }
 
