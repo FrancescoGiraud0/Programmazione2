@@ -18,14 +18,8 @@ public class Circle2D extends Point2D{
     public Circle2D(double x, double y, double radius) throws NegativeException{
         // Imposta coordinate centro
         super(x,y);
-
-        try{
-            // Prova a settare il raggio
-            setRadius(radius);
-        }catch(NegativeException e){
-            // Se in setRadius() viene sollevata un'eccezione, viene a sua volta risollevata
-            throw e;
-        }
+        // Setta il raggio ( gestione dell'eccezione in setRadius() )
+        setRadius(radius);
 
     }
 
@@ -88,8 +82,12 @@ public class Circle2D extends Point2D{
             return super.distance(c)-c.getRadius()-this.getRadius();
     }
 
-    // Metodo per informazioni oggetto
     public String toString(){
+        return "{O: (" + x + "," + y + ") radius: " + getRadius() + "}";
+    }
+
+    // Metodo per informazioni oggetto
+    public String info(){
         return "{O: (" + x + "," + y + ") radius: " + getRadius() + " area: "+area()+" crf: "+circonferenza()+"}";
     }
 
@@ -97,17 +95,20 @@ public class Circle2D extends Point2D{
 
         try{
             // NOTA: c è visibile solo nello scope dove viene creato, in questo caso solo nel blocco try
+            Circle2D c   = new Circle2D( Double.parseDouble(args[0]), Double.parseDouble(args[1]), Double.parseDouble(args[2]));
+            Circle2D c10 = new Circle2D(10, 0, 5);
+            Point2D  p10 = new Point2D(10,0);
 
-            Circle2D c = new Circle2D( Double.parseDouble(args[0]), Double.parseDouble(args[1]), Double.parseDouble(args[2]));
             // Informazioni sul cerchio
-            System.out.println(c.toString());
+            System.out.println(c);
+            System.out.println(c.info());
 
             // Distanze da testare
             System.out.println( "Distanza da (0,0): " + c.distance() );
-            System.out.println( "Distanza da (10,0): " + c.distance(new Point2D(10,0)) );
+            System.out.println( "Distanza da " + p10 + ": " + c.distance(p10));
 
             // Aggiunta perchè già creato il metodo per le distanze tra cerchi
-            System.out.println( "Distanza da cerchio {O:(10,0) R:5} : " + c.distance(new Circle2D(10, 0, 5)));
+            System.out.println( "Distanza da cerchio " + c10 + " : " + c.distance(c10));
 
         }catch(IndexOutOfBoundsException e){
             System.out.println("Errore: inserire almeno tre valori double da terminale");

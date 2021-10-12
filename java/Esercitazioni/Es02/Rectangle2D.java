@@ -45,7 +45,7 @@ public class Rectangle2D extends Point2D{
 
     // Restituisce Perimetro rettangolo
     public double perimetro(){
-        return 2*Math.abs(altezza)+2*Math.abs(larghezza);
+        return 2*(Math.abs(altezza)+Math.abs(larghezza));
     }
 
     // Restituisce Area rettangolo
