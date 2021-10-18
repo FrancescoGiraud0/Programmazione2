@@ -1,7 +1,7 @@
 /** Gruppo Giraudo-Favareto
- *  Data: 13-10-2021
+ *  Data: 18-10-2021
  *  
- *  Implementazione della classe Circle2D che estende Point2D.
+ *  Circle2D con input tramite Scanner.
 */
 
 import java.util.*;
@@ -98,24 +98,30 @@ public class Circle2D extends Point2D{
         Scanner sc = new Scanner(System.in);
 
         try{
-            System.out.print("Inserire coordinate del centro divise da spazi: ");
+            // Input coordinate
+            System.out.print("Inserire coordinate del centro divise da spazi: ")
             x = sc.nextDouble();
             y = sc.nextDouble();
 
+            // Input del raggio
             System.out.print("Inserire raggio: ");
             r = sc.nextDouble();
         }catch (InputMismatchException e){
             // Fa questo quando l'utente non inserisce valori double
-            System.out.println("Errore: bisogna inserire solo numeri (InputMismatchException)");
-            return; // Termina
+
+            // Segnala errore
+            System.out.println("Errore: bisogna inserire solo numeri");
+            return; // Termina il programma
         }
 
         try{
+            // Crea nuovo cerchio con parametri inseriti in input
             Circle2D circle = new Circle2D(x,y,r);
 
+            // Stampa caratteristiche cerchio
             System.out.println(circle);
         }catch (NegativeException e){
-            // Se raggio e' negativo
+            // Se raggio e' negativo segnala errore
             System.out.println("Errore: raggio negativo");
         }
 

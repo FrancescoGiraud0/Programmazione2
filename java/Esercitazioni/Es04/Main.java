@@ -10,42 +10,46 @@ public class Main{
         Scanner sc = new Scanner(System.in);
 
         System.out.println("\nPROVA CON Scanner");
-        System.out.println("Inserire i numeri di cui si vuole far la somma. (Terminare la sequenza con un carattere non numerico)");
+        System.out.println("Inserire i numeri di cui si vuole far la somma. (Terminare la sequenza con un carattere non numerico): ");
 
         while(true){
+            // Ripeti fino a che l'utente non innserisce un carattere non numerico
+            // (ovvero fino a quando non si verifica un'eccezione)
             try{
                 n_in = sc.nextDouble();
-                System.out.println(n_in); // da eliminare
                 somma += n_in;
             }catch(NumberFormatException e){
-                break;
+                break; // Esci dal ciclo
             }catch(Exception e){
-                break;
+                System.out.println("Errore generico");
+                break; // Esci dal ciclo
             }
         }
 
         System.out.println("Somma = " + somma);
 
         /** --------------
-          * N.B. Il secondo metodo non leggerà il file.
+          * N.B. Il secondo metodo non leggerà l'input se viene reindirizzato da file.
         */
-        somma = 0;
+        somma = 0; // Resetta somma
 
         System.out.println("PROVA CON BufferedReader");
-        System.out.println("Inserire i numeri di cui si vuole far la somma. (Terminare la sequenza con un carattere non numerico)");
+        System.out.println("Inserire i numeri di cui si vuole far la somma. (Terminare la sequenza con un carattere non numerico): ");
 
         while(true){
+            // Ripeti fino a che l'utente non innserisce un carattere non numerico
+            // oppure vengono inseriti più caratteri sulla stessa riga.
+            // (ovvero fino a quando non si verifica un'eccezione)
             try{
                 s = br.readLine();
                 n_in = Double.parseDouble(s);
-                System.out.println(n_in); // da eliminare
                 somma += n_in;
             }catch(NumberFormatException e){
-                break;
+                break; // Esci dal ciclo
             }catch(IOException e){
-                break;
+                break; // Esci dal ciclo
             }catch(Exception e){
-                break;
+                break; // Esci dal ciclo
             }
         }
 
