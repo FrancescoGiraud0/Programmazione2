@@ -1,0 +1,5 @@
+Note Esercitazione bocce:
+
+- implementare due distanze, una per le bocce l'altra per le buche.
+- dubbio su unità coordinate campo per movimento.
+- descrizione chiara delle regole. (A cosa servono i file?)
