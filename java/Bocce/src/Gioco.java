@@ -124,7 +124,7 @@ public interface Gioco
    * Gli indici validi sono da 0 a numeroBocce()-1. */
   double bocciaY(int indiceBoccia);
 
-  /** Ritorna vero sse la boccia di indice dato e' caduta in buca.
+  /** Ritorna vero se la boccia di indice dato e' caduta in buca.
    * Gli indici validi sono da 0 a numeroBocce()-1. */
   boolean caduta(int indiceBoccia);
 
@@ -150,7 +150,7 @@ public interface Gioco
   
   /** Ritorna vero se e solo se tutte le bocce ancora presenti
    * in campo sono ferme. */
-  boolean bocceFerme(); 
+  boolean bocceFerme();
 
   /** Ritorna vero se e solo se il gioco e' finito, ovvero se il 
    * boccino e' gia' caduto in buca oppure se non ci sono piu' 
