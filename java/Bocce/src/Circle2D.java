@@ -1,7 +1,5 @@
 /** Gruppo Giraudo-Favareto
  *  Data: 18-10-2021
- *  
- *  Circle2D con input tramite Scanner.
 */
 
 import java.util.*;

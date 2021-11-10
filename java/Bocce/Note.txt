@@ -1,7 +1,0 @@
-Note Esercitazione bocce:
-
-- dubbio posizione elementi nel campo -> descrizione chiara delle regole (Il giocatore tira la boccia oppure tira solo il boccino?)
-- angolo in radianti o in gradi? deve essere compreso in [0,180]?
-- implementare due distanze, una per le bocce l'altra per le buche.
-- dubbio su unità coordinate campo per movimento.
-- (A cosa servono i file?)

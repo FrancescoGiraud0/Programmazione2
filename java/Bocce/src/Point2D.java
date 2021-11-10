@@ -14,7 +14,7 @@ class Point2D{
 
     // costruttore di classe con 2 parametri
     public Point2D(double x, double y){
-        this.x=x; this.y=y;
+        this.moveTo(x, y);
     }
     
 
