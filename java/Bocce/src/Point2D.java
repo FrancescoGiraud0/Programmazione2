@@ -29,12 +29,12 @@ class Point2D{
     }
 
     // restituisce il valore della prima coordinata
-    public getX(){
+    public double getX(){
         return x;
     }
 
     // restituisce il valore della seconda coordinata
-    public getY(){
+    public double getY(){
         return y;
     }
 

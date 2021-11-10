@@ -26,6 +26,7 @@ class LinkedList{
         cur.next = aux;
     }
 
+    // se usassimo last per salvare ultimo nodo
     void addToBackLast(int n){
         Node aux = new Node(n);
         last.next = aux;
@@ -56,15 +57,13 @@ class LinkedList{
         }
     }
 
-    /*
-    void print(){
+    void printRecursive(){
         System.out.print("["); // la lista viene stampata fra []
 
         if (first!=null) first.print();
 
         System.out.println("]");
     }
-    */
 
     void print(){
         Node node = first;
@@ -81,7 +80,7 @@ class LinkedList{
         System.out.println("]");
     }
 
-    /*int length(){
+    int lengthIterative(){
         int l = 0; // contatore
         Node aux = first;
         while (aux != null){
@@ -89,7 +88,7 @@ class LinkedList{
             aux = aux.next;
         }
         return l;
-    }*/
+    }
 
     boolean isPresent(int n){
         if(first==null)
