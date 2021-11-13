@@ -14,7 +14,7 @@ public class Boccia extends Circle2D{
      * @param y posizione y della boccia
      * @param radius raggio della boccia
      */
-    public Boccia(double x, double y, double radius) throws Circle2D.NegativeException{
+    public Boccia(double x, double y, double radius){
         super(x, y, radius);
         caduta = false;
         moduloVel = alphaVel = 0;
@@ -78,17 +78,25 @@ public class Boccia extends Circle2D{
      * @param b buca da controllare
      * @return true se la boccia è caduta nella buca b, false altrimenti
      */
-    public boolean cadutaInBuca(Circle2D b){
-        Point2D centroBuca = b; // upcasting a Point2D per usare centro come punto
+    public boolean cadutaInBuca(Circle2D buca){
+        Point2D centroBuca = buca; // upcasting a Point2D per usare centro come punto
         
-        // Se la distanza della boccia (NON del centro della boccia, ma proprio la boccia)
+        // Se la distanza della boccia (NON dal centro della boccia, ma proprio la boccia)
         // dal centro della buca e' minore del raggio della buca, allora cade
-        if(distance(centroBuca)<=b.getRadius()){
+        if(distance(centroBuca)<=buca.getRadius()){
             caduta = true;
             return true;
         }
         
         return false;
+    }
+
+    /**
+     * Metodo per resettare caduta, usato all'inizio del gioco per posizionare
+     * le bocce.
+     */
+    public void resetCaduta(){
+        caduta = false;
     }
 
     /**
@@ -116,12 +124,11 @@ public class Boccia extends Circle2D{
                 dist = dimY - (this.y + this.getRadius());
                 break;
             default:
-                // TODO: Segnala errore (Eccezione?)
+                dist = -1; // TODO Eccezione
                 break;
         }
 
         return dist;
-
     }
 
     /**
@@ -160,35 +167,4 @@ public class Boccia extends Circle2D{
         return  "{x:"+getX()+ ", y:"+getY()+", radius:"+getRadius()+
                 ", modulo: "+moduloVel+", alpha: "+alphaVel+"}";
     }
-
-    public static void main(String[] args){
-        Boccia b;
-        try{
-            b = new Boccia(50,50,10);
-            System.out.println(b);
-            
-            b.setAlpha(Math.PI/2);
-            System.out.println(b);
-            b.setAlpha(3*Math.PI);
-            System.out.println(b);
-            b.setAlpha(-Math.PI/2);
-            System.out.println(b);
-
-
-            b.setModulo(Math.PI/2);
-            System.out.println(b);
-            b.setModulo(3*Math.PI);
-            System.out.println(b);
-            b.setModulo(-Math.PI/2);
-            System.out.println(b);
-
-            for(int i=0; i<4; i++){
-                System.out.println("Sponda "+i+": "+b.distanzaSponda(i, 100, 100));
-            }
-            
-        }catch(Circle2D.NegativeException e){
-            System.out.println("Errore: raggio negativo");
-        }
-    }
-
 }

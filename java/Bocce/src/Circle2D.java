@@ -15,11 +15,15 @@ public class Circle2D extends Point2D{
     }
 
     // Costruttore con 3 parametri
-    public Circle2D(double x, double y, double radius) throws NegativeException{
+    public Circle2D(double x, double y, double radius){
         // Imposta coordinate centro
         super(x,y);
         // Setta il raggio ( gestione dell'eccezione in setRadius() )
-        setRadius(radius);
+        try{
+            setRadius(radius);
+        }catch(NegativeException e){
+            System.out.println(e);
+        }
 
     }
 
