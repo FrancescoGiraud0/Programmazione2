@@ -77,7 +77,6 @@ class Campo implements Gioco{
             if(newBoccia.getRadius()<bocce.get(indiceBoccino).getRadius())
                 indiceBoccino = bocce.size()-1;
         }
-
     }
 
     /**
@@ -201,8 +200,8 @@ class Campo implements Gioco{
      * Ritorna falso se, dopo, tutte le bocce sono ferme.
      */
     public boolean evoluzioneDeltaT(){
-        double x1 = bocciaMov.getX()*bocciaMov.getModulo()*Math.cos(bocciaMov.getAlpha());
-        double y1 = bocciaMov.getY()*bocciaMov.getModulo()*Math.sin(bocciaMov.getAlpha());
+        double x1 = bocciaMov.getX()+ DELTA_T*bocciaMov.getModulo()*Math.cos(bocciaMov.getAlpha());
+        double y1 = bocciaMov.getY()+ DELTA_T*bocciaMov.getModulo()*Math.sin(bocciaMov.getAlpha());
         bocciaMov.moveTo(x1, y1);
         bocciaMov.decModulo(DECREMENTO);
 
@@ -210,8 +209,10 @@ class Campo implements Gioco{
             addPunti(1);
         }else{
             controllaUrtiSponde(bocciaMov);
-            controllaUrtiBocce(bocciaMov);
+            controllaUrtiBocce();
         }
+
+        System.out.println("Posizione boccino: "+"("+bocce.get(indiceBoccino).getX()+","+bocce.get(indiceBoccino).getY()+")");
 
         return bocceFerme();
     }
@@ -401,7 +402,7 @@ class Campo implements Gioco{
      * @param b
      */
     public void controllaUrtiSponde(Boccia b){
-
+        // Metodo nn funzionante, da rifare completamente
         if(b.getAlpha()<=Math.PI/2){
             if(b.urtoSponde(2, 3, dimX, dimY))
                 b.setAlpha(0.25*Math.PI);         //NB RIVEDERE

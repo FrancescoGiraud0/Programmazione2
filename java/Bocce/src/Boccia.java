@@ -85,6 +85,9 @@ public class Boccia extends Circle2D{
         // dal centro della buca e' minore del raggio della buca, allora cade
         if(distance(centroBuca)<=buca.getRadius()){
             caduta = true;
+            setModulo(0);
+            setAlpha(0);
+            setModulo(0);
             return true;
         }
         
@@ -136,7 +139,7 @@ public class Boccia extends Circle2D{
      * @param i indice della sponda (0:sinistra,1:basso,2:destra,3:alto)
      */
     public boolean urtoSponda(int i, double dimX, double dimY){
-        return distanzaSponda(i, dimX, dimY)<=0; 
+        return distanzaSponda(i, dimX, dimY)<=0.001;
     } 
 
     /**
