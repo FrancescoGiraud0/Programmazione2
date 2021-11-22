@@ -42,7 +42,7 @@ class Campo implements Gioco{
                 this.numBuche = s.nextInt();
                 
                 for(int i=0; i<numBuche; i++)
-                    aggiungiBuca(s.nextDouble());
+                    aggiungiBuca(s.nextDouble()/2);
             }
 
             // Legge numero bocce e le aggiunge una per una
@@ -50,7 +50,7 @@ class Campo implements Gioco{
                 this.numBocce = s.nextInt();
                 
                 for(int i=0; i<numBocce; i++)
-                    aggiungiBoccia(s.nextDouble());
+                    aggiungiBoccia(s.nextDouble()/2);
 
                 posizionaBocce();
             }
@@ -211,8 +211,6 @@ class Campo implements Gioco{
             controllaUrtiSponde(bocciaMov);
             controllaUrtiBocce();
         }
-
-        System.out.println("Posizione boccino: "+"("+bocce.get(indiceBoccino).getX()+","+bocce.get(indiceBoccino).getY()+")");
 
         return bocceFerme();
     }
@@ -405,34 +403,34 @@ class Campo implements Gioco{
         // Metodo nn funzionante, da rifare completamente
         if(b.getAlpha()<=Math.PI/2){
             if(b.urtoSponde(2, 3, dimX, dimY))
-                b.setAlpha(0.25*Math.PI);         //NB RIVEDERE
+                b.setAlpha(1.25*Math.PI);         //NB RIVEDERE
             else if(b.urtoSponda(2, dimX, dimY))
-                b.setAlpha(2*Math.PI-b.getAlpha());
-            else if(b.urtoSponda(3, dimX, dimY))
                 b.setAlpha(Math.PI-b.getAlpha());
+            else if(b.urtoSponda(3, dimX, dimY))
+                b.setAlpha(2*Math.PI-b.getAlpha());
 
         }else if(b.getAlpha()>Math.PI/2 && b.getAlpha()<=Math.PI){
             if(b.urtoSponde(0, 3, dimX, dimY))
-                b.setAlpha(0.75*Math.PI);         //NB RIVEDERE
+                b.setAlpha(1.75*Math.PI);         //NB RIVEDERE
             else if(b.urtoSponda(0, dimX, dimY))
-                b.setAlpha(2*Math.PI-b.getAlpha());
-            else if(b.urtoSponda(3, dimX, dimY))
                 b.setAlpha(Math.PI-b.getAlpha());
+            else if(b.urtoSponda(3, dimX, dimY))
+                b.setAlpha(2*Math.PI-b.getAlpha());
 
         }else if(b.getAlpha()>Math.PI && b.getAlpha()<=(1.5)*Math.PI){
             if(b.urtoSponde(0, 1, dimX, dimY))
-                b.setAlpha(1.25*Math.PI);         //NB RIVEDERE
+                b.setAlpha(0.25*Math.PI);         //NB RIVEDERE
             else if(b.urtoSponda(0, dimX, dimY))
-                b.setAlpha(2*Math.PI-b.getAlpha());
-            else if(b.urtoSponda(1, dimX, dimY))
                 b.setAlpha(3*Math.PI-b.getAlpha());
+            else if(b.urtoSponda(1, dimX, dimY))
+                b.setAlpha(2*Math.PI-b.getAlpha());
         }else{
             if(b.urtoSponde(1, 2, dimX, dimY))
-                b.setAlpha(1.75*Math.PI);         //NB RIVEDERE
+                b.setAlpha(0.75*Math.PI);         //NB RIVEDERE
             else if(b.urtoSponda(2, dimX, dimY))
-                b.setAlpha(2*Math.PI-b.getAlpha());
-            else if(b.urtoSponda(1, dimX, dimY))
                 b.setAlpha(3*Math.PI-b.getAlpha());
+            else if(b.urtoSponda(1, dimX, dimY))
+                b.setAlpha(2*Math.PI-b.getAlpha());
         }
 
     }

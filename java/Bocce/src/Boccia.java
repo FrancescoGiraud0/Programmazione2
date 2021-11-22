@@ -80,14 +80,13 @@ public class Boccia extends Circle2D{
      */
     public boolean cadutaInBuca(Circle2D buca){
         Point2D centroBuca = buca; // upcasting a Point2D per usare centro come punto
+        Point2D centroBoccia = this; // upcasting a Point2D per usare centro come punto
         
-        // Se la distanza della boccia (NON dal centro della boccia, ma proprio la boccia)
-        // dal centro della buca e' minore del raggio della buca, allora cade
-        if(distance(centroBuca)<=buca.getRadius()){
+        // Se la distanza tra i centri è minore del raggio della buca
+        if(centroBoccia.distance(centroBuca)<=buca.getRadius()){
             caduta = true;
             setModulo(0);
             setAlpha(0);
-            setModulo(0);
             return true;
         }
         
