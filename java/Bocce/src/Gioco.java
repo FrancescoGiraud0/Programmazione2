@@ -42,8 +42,7 @@
  * con un intervallo di tempo fissato (piccolo) tra uno scatto
  * e il successivo.
  */ 
-public interface Gioco 
-{
+public interface Gioco{
   /** Intervallo di tempo tra due scatti di simulazione, in secondi. */
   double DELTA_T = 0.02;
 
@@ -125,7 +124,7 @@ public interface Gioco
   double bocciaY(int indiceBoccia);
 
   /** Ritorna vero se la boccia di indice dato e' caduta in buca.
-   * Gli indici validi sono da 0 a numeroBocce()-1. */
+   * Gli indici validi sono da 0 a numeroBocce()-1.*/
   boolean caduta(int indiceBoccia);
 
   /** Ritorna la coordinata X della posizione della buca di indice dato.

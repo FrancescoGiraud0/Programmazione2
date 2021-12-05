@@ -1,4 +1,5 @@
-/** Gruppo: Giraudo-Favareto
+/** 
+ *  @author Favareto Francesco + Giraudo Francesco
  * 
  *  Classe per descrivere un punto in un piano cartesiano.
  *  Un punto ha coordinate x e y, valori double.

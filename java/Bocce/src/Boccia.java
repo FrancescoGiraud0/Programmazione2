@@ -1,6 +1,7 @@
 import java.lang.Math;
 
 /**
+ * @author Favareto Francesco + Giraudo Francesco
  * Classe per rappresentare Bocce nel campo.
  */
 public class Boccia extends Circle2D{
@@ -9,7 +10,7 @@ public class Boccia extends Circle2D{
     private boolean caduta=false;
 
     /**
-     * Costruttore della classe Boccia
+     * Costruttore della classe Boccia.
      * @param x posizione x della boccia
      * @param y posizione y della boccia
      * @param radius raggio della boccia
@@ -21,8 +22,8 @@ public class Boccia extends Circle2D{
     }
 
     /**
-     * Metodo che setta modulo velocità della boccia
-     * @param m
+     * Metodo che setta modulo velocità della boccia.
+     * @param m modulo velocità boccia
      */
     public void setModulo(double m){
         if(m<0) 
@@ -32,7 +33,7 @@ public class Boccia extends Circle2D{
     }
 
     /**
-     * Metodo che decrementa modulo velocità della boccia
+     * Metodo che decrementa modulo velocità della boccia.
      * @param dec valore di decremento
      */
     public void decModulo(double dec){
@@ -43,7 +44,7 @@ public class Boccia extends Circle2D{
     }
 
     /**
-     * Metodo che setta angolo velocità della boccia
+     * Metodo che setta angolo velocità della boccia.
      * @param alpha valore dell'angolo in radianti
      */
     public void setAlpha(double alpha){
@@ -58,7 +59,7 @@ public class Boccia extends Circle2D{
     }
 
     /**
-     * Metodo che restituisce modulo velocità della boccia
+     * Metodo che restituisce modulo velocità della boccia.
      * @return modulo velocità
      */
     public double getModulo(){
@@ -74,17 +75,18 @@ public class Boccia extends Circle2D{
     }
 
     /**
-     * Metodo verifica la caduta nella buca b
-     * @param b buca da controllare
+     * Metodo verifica la caduta nella buca b.
+     * @param buca buca da controllare
      * @return true se la boccia è caduta nella buca b, false altrimenti
      */
     public boolean cadutaInBuca(Circle2D buca){
-        Point2D centroBuca = buca; // upcasting a Point2D per usare centro come punto
-        Point2D centroBoccia = this; // upcasting a Point2D per usare centro come punto
+        Point2D centroBuca = new Point2D(buca.getX(), buca.getY());
+        Point2D centroBoccia = new Point2D(this.getX(), this.getY());
         
-        // Se la distanza tra i centri è minore del raggio della buca
+        // Se la distanza tra i centri (distanza tra punti) è minore del raggio della buca
+        // allora cade
         if(centroBoccia.distance(centroBuca)<=buca.getRadius()){
-            caduta = true;
+            this.caduta = true;
             setModulo(0);
             setAlpha(0);
             return true;
@@ -94,22 +96,34 @@ public class Boccia extends Circle2D{
     }
 
     /**
-     * Metodo per resettare caduta, usato all'inizio del gioco per posizionare
-     * le bocce.
+     * Metodo per resettare caduta, usato all'inizio del gioco per posizionare le bocce.
      */
     public void resetCaduta(){
-        caduta = false;
+        this.caduta = false;
     }
 
     /**
-     * Metodo che restituisce true se la boccia è caduta in buca, false altrimenti
+     * Metodo che restituisce true se la boccia è caduta in buca, false altrimenti.
      * @return true se la boccia è caduta in buca, false altrimenti
      */
     public boolean isCaduta(){
-        return caduta;
+        return this.caduta;
     }
     
+    /**
+     * Restituisce distanza dalla sponda i-esima.
+     * @param i indice sponda
+     * @param dimX dimensione x del campo
+     * @param dimY dimensione t del campo
+     * @return distanza da sponda i-esima
+     */
     public double distanzaSponda(int i, double dimX, double dimY){
+        /* Lista sponde:
+            - 0: sponda sinistra
+            - 1: sponda inferiore
+            - 2: sponda destra
+            - 3: sponda superiore
+        */
         double dist = 0;
 
         switch(i){
@@ -126,7 +140,7 @@ public class Boccia extends Circle2D{
                 dist = dimY - (this.y + this.getRadius());
                 break;
             default:
-                dist = -1; // TODO Eccezione
+                dist = -1;
                 break;
         }
 
@@ -134,11 +148,20 @@ public class Boccia extends Circle2D{
     }
 
     /**
-     * Metodo per verifica urto con una della 4 sponde del campo
-     * @param i indice della sponda (0:sinistra,1:basso,2:destra,3:alto)
+     * Metodo per verificare urto con la sponda i-esima.
+     * @param i indice della sponda
+     * @param dimX dimensione x del campo
+     * @param dimY dimensione y del campo
+     * @return true se urto, false altrimenti
      */
     public boolean urtoSponda(int i, double dimX, double dimY){
-        return distanzaSponda(i, dimX, dimY)<=0.001;
+        /* Lista sponde:
+            - 0: sponda sinistra
+            - 1: sponda inferiore
+            - 2: sponda destra
+            - 3: sponda superiore
+        */
+        return distanzaSponda(i, dimX, dimY)<=0;
     } 
 
     /**
@@ -147,7 +170,7 @@ public class Boccia extends Circle2D{
      * @param j indice della seconda sponda (0:sinistra,1:basso,2:destra,3:alto)
      * @param dimX  lunghezza del campo
      * @param dimY  altezza y del campo
-     * @return
+     * @return true se urto, false altrimenti
      */
     public boolean urtoSponde(int i, int j, double dimX, double dimY){
         return distanzaSponda(i, dimX, dimY)<=0 && distanzaSponda(j, dimX, dimY)<=0;
@@ -167,6 +190,6 @@ public class Boccia extends Circle2D{
      */
     public String toString(){
         return  "{x:"+getX()+ ", y:"+getY()+", radius:"+getRadius()+
-                ", modulo: "+moduloVel+", alpha: "+alphaVel+"}";
+                ", modulo:"+moduloVel+", alpha:"+alphaVel+", caduta:"+caduta+"}";
     }
 }

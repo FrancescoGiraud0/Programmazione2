@@ -1,8 +1,8 @@
-/** Gruppo Giraudo-Favareto
- *  Data: 18-10-2021
+/**
+ * @author Favareto Francesco + Giraudo Francesco
+ * Classe per rappresentare un cerchio in 2D.
 */
 
-import java.util.*;
 
 public class Circle2D extends Point2D{
     private double radius;
@@ -33,7 +33,7 @@ public class Circle2D extends Point2D{
         if(radius>=0)
             this.radius = radius;
         else
-            throw new NegativeException("Negative radius " + radius);
+            throw new NegativeException("Errore: Raggio negeativo " + radius);
     }
 
     // Metodo per ottenere il raggio

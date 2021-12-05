@@ -355,7 +355,7 @@ public class VisualizzaGioco extends JFrame
         g.setPaint(new GradientPaint(ix,iy,Color.red,
                                       ix+id/2, iy+id/2, Color.white));
       else
-        g.setPaint(new GradientPaint(ix,iy,Color.magenta,
+        g.setPaint(new GradientPaint(ix,iy,Color.orange,
                                       ix+id/2, iy+id/2, Color.white));
       g.fill(tondo);
       g.setColor(Color.black);
@@ -429,7 +429,11 @@ public class VisualizzaGioco extends JFrame
                "Scegliere CANCEL conferma il default = "+
                gioco.numeroTiri()+" tiri");
       if (s==null) return; // caso CANCEL
-      int k = Integer.parseInt(s.trim());
+      int k = 0;
+      if(s.equals(""))
+        k = Campo.DEFAULT_TIRI;
+      else
+        k = Integer.parseInt(s.trim());
       gioco.cambiaNumeroTiri(k);
       lab_tiri.setText("Tiri rimasti: "+gioco.numeroTiri());
     }
